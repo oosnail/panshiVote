@@ -9,10 +9,16 @@
 import UIKit
 import WebKit
 
+
 //投票地址
-let voteUrl = "http://pvote.a.stonevote.net/poll/xxxxx.html"
+let voteUrl = "http://pvote.a.stonevote.net/poll/xxxxxxxx.html"
+//投票的id
+let voteId = "op_xxxxxxx"
+
+
+
 //需要投票id数组
-let voteArr:[String] = ["op_xxxxx"]
+let voteArr:[String] = ["op_3052976"]
 
 class ViewController:
     
@@ -98,7 +104,7 @@ UIViewController ,WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler{
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         //点击选项
         if autoVote{
-            let Str1 = "$('#op_3052976 .iCheck-helper').trigger('click');$('html, body').animate({scrollTop: $('#inputCaptchacodeDiv').offset().top},0);"
+            let Str1 = "$('#\(voteId) .iCheck-helper').trigger('click');$('html, body').animate({scrollTop: $('#inputCaptchacodeDiv').offset().top},0);"
             mywebview.evaluateJavaScript(Str1) { (make, error) in
                 //            self.nextbutton.setTitle("加载完毕", for: .normal)
             }
@@ -116,7 +122,7 @@ UIViewController ,WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler{
     func scrolltoend(button:UIButton){
         //点击了投票 就取消了当前页面自动投票机制
         autoVote = false
-        let Str1 = "$('#op_3052976 .iCheck-helper').trigger('click');$('html, body').animate({scrollTop: $('#inputCaptchacodeDiv').offset().top},0);"
+        let Str1 = "$('#\(voteId) .iCheck-helper').trigger('click');$('html, body').animate({scrollTop: $('#inputCaptchacodeDiv').offset().top},0);"
         mywebview.evaluateJavaScript(Str1) { (make, error) in
         }
     }
@@ -130,7 +136,7 @@ UIViewController ,WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler{
             }
         }else{
             //到七十四
-            let Str1 = "$('html, body').animate({scrollTop: $('#op_3052976').offset().top}, 0);"
+            let Str1 = "$('html, body').animate({scrollTop: $('#\(voteId)').offset().top}, 0);"
             mywebview.evaluateJavaScript(Str1) { (make, error) in
             }
         }
