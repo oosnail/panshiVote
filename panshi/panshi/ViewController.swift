@@ -15,11 +15,6 @@ let voteUrl = "http://pvote.a.stonevote.net/poll/xxxxxxxx.html"
 //投票的id
 let voteId = "op_xxxxxxx"
 
-
-
-//需要投票id数组
-let voteArr:[String] = ["op_3052976"]
-
 class ViewController:
     
 UIViewController ,WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler{
@@ -135,7 +130,7 @@ UIViewController ,WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler{
             mywebview.evaluateJavaScript(Str1) { (make, error) in
             }
         }else{
-            //到七十四
+            //到投票的位置
             let Str1 = "$('html, body').animate({scrollTop: $('#\(voteId)').offset().top}, 0);"
             mywebview.evaluateJavaScript(Str1) { (make, error) in
             }
